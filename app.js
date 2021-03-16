@@ -4,8 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var mongo = require('mongodb')
 var monk = require('monk');
-var db = monk('localhost:27017/nodetest1');
+var db = monk('localhost:27017/nodetest2');
 
 indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// make db accessible to router
+// make db accessible to router ( must be above routes )
 app.use(function(req, res, next){
     req.db = db;
     next();
