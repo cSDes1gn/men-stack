@@ -8,6 +8,7 @@ router.get('/userlist', function(req, res, next) {
   collection.find({}, {}, function(e, docs){
     res.json(docs);
   });
+  console.info("userlist get request complete");
 });
 
 module.exports = router;
