@@ -10,16 +10,20 @@
     <!-- wrapper -->
     <div id="wrapper">
       <!-- user info -->
-      <h2>User Info</h2>
-      <p>
-        <b>Name: </b><span id="userInfoName"></span><br>
-        <b>Age: </b><span id="userInfoAge"></span><br>
-        <b>Gender: </b><span id="userInfoGender"></span><br>
-        <b>Location: </b><span id="userInfoLocation"></span><br>
-      </p>
+      <div id="userInfo">
+        <h2>User Info</h2>
+        <p>
+          <b>Username: </b><span id="userInfoUserName"></span><br>
+          <b>Full Name: </b><span id="userInfoFullName"></span><br>
+          <b>Email: </b><span id="userInfoEmail"></span><br>
+          <b>Age: </b><span id="userInfoAge"></span><br>
+          <b>Location: </b><span id="userInfoLocation"></span><br>
+          <b>Gender: </b><span id="userInfoGender"></span><br>
+        </p>
+      </div>
       <!-- userlist -->
-      <h2>User List</h2>
       <div id="userList">
+        <h2>User List</h2>
         <table>
           <thead>
             <th>UserName</th>
@@ -31,8 +35,8 @@
         </table>
       </div>
       <!-- add user -->
-      <h2>Add User</h2>
       <div id="addUser">
+        <h2>Add User</h2>
         <fieldset>
           <input id="inputUserName" type="text" placeholder="Username">
           <input id="inputUserEmail" type="email" placeholder="Email"><br>
@@ -43,7 +47,7 @@
           <label for="male">Male</label>
           <input type="radio" id="female" name="inputUserGender" value="female">
           <label for="female">Female</label><br>
-          <input id="btnSubmit" type="submit" value="submit">
+          <button id="btnSubmit" type="button">Submit</button>
         </fieldset>
       </div>
     </div>
