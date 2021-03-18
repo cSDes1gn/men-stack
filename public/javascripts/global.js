@@ -6,6 +6,8 @@ $(document).ready(function(){
   populateTable();
   // Username link click
   $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
+  // Add User button click
+  $('#btnSubmit').on('click', addUser);
 });
 
 // fill table with data
@@ -29,6 +31,10 @@ function populateTable() {
 };
 
 function showUserInfo(event){
+  // clear previous entries
+  $('#userInfo p span').each(function(index, val) {
+    ($(this).val() == '')
+  });
   // prevent link from firing
   event.preventDefault();
   // get username from link rel attribute
@@ -38,8 +44,53 @@ function showUserInfo(event){
   // get user object
   var thisUserObject = userListData[arrayPosition];
   // populate info box
-  $('#userInfoName').text(thisUserObject.fullname);
+  $('#userInfoUserName').text(thisUserObject.username);
+  $('#userInfoFullName').text(thisUserObject.fullname);
+  $('#userInfoEmail').text(thisUserObject.email);
   $('#userInfoAge').text(thisUserObject.age);
-  $('#userInfoGender').text(thisUserObject.gender);
   $('#userInfoLocation').text(thisUserObject.location);
+  $('#userInfoGender').text(thisUserObject.gender);
+};
+
+function addUser(event){
+  event.preventDefault();
+  // form validation
+  var error_flag = false;
+  // phase 1: ensure all adduser text inputs are all not empty
+  $('#addUser input').each(function(index, val) {
+    if ($(this).val() === '') {
+      error_flag = true; // cannot return inside lambda
+    }
+  });
+  if (error_flag == true) {
+    alert("Please fill in all input fields");
+    return false;
+  }
+  // phase 2: compile data into one object and attempt post request
+  var newUser = {
+    'username': $('#addUser fieldset input#inputUserName').val(),
+    'email': $('#addUser fieldset input#inputUserEmail').val(),
+    'fullname': $('#addUser fieldset input#inputUserFullName').val(),
+    'age': $('#addUser fieldset input#inputUserAge').val(),
+    'location': $('#addUser fieldset input#inputUserLocation').val(),
+    'gender': $('#addUser fieldset input#inputUserGender').val()
+  };
+  console.log("newUser: " + newUser);
+  // use ajax to post the object to our adduser route
+  $.ajax({
+    type: 'POST',
+    data: newUser,
+    url: '/users/adduser',
+    dataType: 'JSON'
+  }).done(function(response){
+    // check for success ( indicated by blamk response )
+    if (response.msg === '') {
+      // clear the form fields
+      $('#addUser fieldset input').val('');
+      populateTable();
+    } else {
+      // alert if post not successful
+      alert("Error: " + response.msg);
+    }
+  });
 };
