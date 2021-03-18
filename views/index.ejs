@@ -9,6 +9,7 @@
     <p>Welcome to <%= title %></p>
     <!-- wrapper -->
     <div id="wrapper">
+      <!-- user info -->
       <h2>User Info</h2>
       <p>
         <b>Name: </b><span id="userInfoName"></span><br>
@@ -29,7 +30,22 @@
           </tbody>
         </table>
       </div>
-      <!-- userlist -->
+      <!-- add user -->
+      <h2>Add User</h2>
+      <div id="addUser">
+        <fieldset>
+          <input id="inputUserName" type="text" placeholder="Username">
+          <input id="inputUserEmail" type="email" placeholder="Email"><br>
+          <input id="inputUserFullname" type="text" placeholder="Full Name">
+          <input id="inputUserAge" type="text" placeholder="Age"><br>
+          <input id="inputUserLocation" type="text" placeholder="Location">
+          <input type="radio" id="male" name="inputUserGender" value="male">
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="inputUserGender" value="female">
+          <label for="female">Female</label><br>
+          <input id="btnSubmit" type="submit" value="submit">
+        </fieldset>
+      </div>
     </div>
     <!-- wrapper -->
   </body>
