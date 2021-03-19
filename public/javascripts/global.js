@@ -33,7 +33,7 @@ function populateTable() {
 function showUserInfo(event){
   // clear previous entries
   $('#userInfo p span').each(function(index, val) {
-    ($(this).val() == '')
+    ($(this).text() == '')
   });
   // prevent link from firing
   event.preventDefault();
