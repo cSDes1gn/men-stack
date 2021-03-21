@@ -21,4 +21,14 @@ router.post('/adduser', function(req, res){
     );
   });
 });
+
+/* DELETE to deleteuser */
+router.delete('/deleteuser/:id', function(req, res){
+  var db = req.db;
+  var collection = db.get('userlist');
+  collection.remove({'_id': req.params.id}, function(err){
+    res.send((err === null) ? {msg: '' } : { msg: 'error: ' + err });
+  });
+});
+
 module.exports = router;
