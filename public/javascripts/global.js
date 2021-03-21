@@ -8,6 +8,8 @@ $(document).ready(function(){
   $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
   // Add User button click
   $('#btnSubmit').on('click', addUser);
+   // Delete User link click
+   $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
 });
 
 // fill table with data
@@ -94,3 +96,25 @@ function addUser(event){
     }
   });
 };
+
+function deleteUser(event){
+  event.preventDefault();
+  // give confirmation dialog
+  var confirmation = confirm("Are you sure you want to delete this user?")
+  // check confirmation
+  if (confirmation === true) {
+    $.ajax({
+      type: 'DELETE',
+      url: '/users/deleteuser/' + $(this).attr('rel')
+    }).done(function(response){
+      if (response.msg === ''){
+      } else {
+        alert("Error: " + response.msg);
+      }
+      // update table
+      populateTable();
+    })
+  } else {
+    return false;
+  } 
+}
